@@ -112,6 +112,37 @@ answer =  np.sum(result[:,2])
 print(answer)
 
 
+# Confusion matrix
+
+TP_r = 0
+FP_r = 0
+FN_r = 0
+TN_r = 0
+total = 0
+interval = 4
+
+for i in range(len(result)):
+    
+    if result[i,0] == interval:
+        total = total+1
+    
+    # Correct prediction
+    if result[i,0] == interval and result[i,2] == 1:
+        TP_r = TP_r+1
+    
+    # This interval, wrong prediction
+    if result[i,0] == interval and result[i,2] == 0:
+        FP_r = FP_r+1
+    
+    # Not this interval, correct prediction
+    if result[i,0] != interval and result[i,2] == 1:
+        TN_r = TN_r+1
+        
+    # Not this interval, predict to this interval
+    if result[i,0] != interval and result[i,1] == interval:
+        FN_r = FN_r+1
+
+
 
     
     
